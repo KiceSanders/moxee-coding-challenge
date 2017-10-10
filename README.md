@@ -46,4 +46,12 @@ Cloud9 provides a web server as well as an online development environment all fo
 
 This assessment is designed to take 2-4 hours depending on your level of experience. If at any point during the above configuration or coding, please reach out and let us know! It is a strength, not a weakness, to know when to ask for help.
 
-### Finally, don't forget to go the extra mile and add some of your own flair! Have fun!
+### Finally, don't forget to go the extra mile and add some of your own flair!
+
+If you're not the creative type, here are a few ideas to get you started:
+
+- Add your own styles to make it look nice or pick an existing framework (Bootstrap, Materialize, etc) and convert the UI.
+- Add commands to the chat area like `/name` or emoji like `:banana:`
+- Add different chatrooms users can join that are all independent of each other
+
+Have fun!
