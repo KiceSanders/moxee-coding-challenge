@@ -46,4 +46,4 @@ Cloud9 provides a web server as well as an online development environment all fo
 
 This assessment is designed to take 2-4 hours depending on your level of experience. If at any point during the above configuration or coding, please reach out and let us know! It is a strength, not a weakness, to know when to ask for help.
 
-### Finally, don't forget to go the extra mile and add soemthing extra. We want to be impressed!
+### Finally, don't forget to go the extra mile and add some of your own flair! Have fun!
