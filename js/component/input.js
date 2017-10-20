@@ -37,23 +37,28 @@ component.input.prototype.decorate = function(parent) {
   button.className = 'input_button';
   button.innerHTML = 'Send Message';
   td_right.appendChild(button);
-
-  button.addEventListener('click', function() {
+  
+  let submitMessage = () => {
     assessment.api(
       'message',
       'create',
       {
         'name': localStorage.name,
-        'message': input.value
+        'message': input.value,
+        'chat_room_id': localStorage.chat_room
       },
       function() {
         input.value = '';
         input.focus();
       }
     );
+  }
+
+  button.addEventListener('click', function() {
+    submitMessage();
   });
 
-  /** TODO 1
+  /**
    * -------------------------------------------------------------------------
    *
    * It's not very convenient to click the "Send" button with the mouse. Make
@@ -64,5 +69,10 @@ component.input.prototype.decorate = function(parent) {
    * -------------------------------------------------------------------------
    */
 
-  // [ Your code here ]
+  input.addEventListener('keypress', (e) => {
+    var key = e.which || e.keyCode;
+    if (key === 13) {
+      submitMessage();
+    }
+  })
 };

@@ -6,27 +6,33 @@ class message {
     $this->mysqli = $mysqli;
   }
 
-  /** TODO 2
-   * -------------------------------------------------------------------------
+  /**
    *
-   * The application currently has no way to retrieve messages from the
-   * database. This is the function that needs to be called but it's up to you
-   * to complete the stub. Write a query and return a list of messages. This
-   * function must take an argument (like timestamp or message_id) and only
-   * return messages after that point. Look at the create() function if you're
-   * not sure what to do.
-   *
-   * -------------------------------------------------------------------------
-   *
-   * @param [type] $arguments [description]
+   * @param $arguments [message_id, chat_room_id]
    *
    * @return [type] [description]
    */
+  
   public function read($arguments) {
     $messages = array();
-
-    // [ Your code here ]
-
+    $msg_id = $this->mysqli->real_escape_string($arguments['message_id']);
+    $chat_room_id = $this->mysqli->real_escape_string($arguments['chat_room_id']);
+    
+    $query = '
+      select
+        *
+      from
+        `message`
+      where
+        `message_id` > ' . "'". $msg_id ."'" . '&& `chat_room_id` ='."'" .$chat_room_id. "'";
+    ;
+    
+    $result = $this->mysqli->query($query) or die($this->mysqli->error);
+    
+    while($r = $result->fetch_assoc()) {
+      $messages[] = $r;
+    }
+    
     return $messages;
   }
 
@@ -42,11 +48,13 @@ class message {
       insert into
         `message`(
           `name`,
-          `message`
+          `message`,
+          `chat_room_id`
         )
         values(
           "' . $this->mysqli->real_escape_string($arguments['name']) . '",
-          "' . $this->mysqli->real_escape_string($arguments['message']) . '"
+          "' . $this->mysqli->real_escape_string($arguments['message']) . '",
+          "' . $this->mysqli->real_escape_string($arguments['chat_room_id']) . '"
         )
     ';
     $this->mysqli->query($query) or die($this->mysqli->error);

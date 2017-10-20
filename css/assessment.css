@@ -14,18 +14,31 @@ h1 {
   font-weight: bold;
 }
 
+.sidebar {
+  width: 15%;
+  height: 324px;
+  background: #fff;
+  border-style: solid;
+  border-width: 1px 1px 0 1px;
+  border-color: #ccc;
+  float: left;
+}
+
 .content {
   border-width: 1px 1px 0 1px;
   border-color: #ccc;
   border-style: solid;
   background: #fff;
   height: 300px;
+  width: 85%;
   overflow-y: scroll;
+  float: right;
 }
 
 .input_table {
-  width: 100%;
+  width: 85%;
   border-collapse: collapse;
+  float: right;
 }
 
 .input_table td {
@@ -55,4 +68,12 @@ h1 {
   height: 24px;
   line-height: 24px;
   outline: none;
+}
+
+.sidebar > button {
+  display: block;
+}
+
+.create_chat_room {
+  background-color: yellow;
 }

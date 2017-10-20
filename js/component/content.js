@@ -30,15 +30,25 @@ component.content.prototype.decorate = function(parent) {
  * Check the server for new messages. When received, display them.
  */
 component.content.prototype.get_new_messages = function() {
+  let content = document.querySelector(".content");
+  let childCt = content.childNodes.length;
+  if (childCt > 0 && content.childNodes[0].getAttribute('data-chat-id') !== localStorage.chat_room) {
+    while (content.hasChildNodes()) {
+      content.removeChild(content.lastChild);
+    }
+    childCt = 0;
+  }
+  let lastID = (childCt === 0) ? 0 : content.childNodes[childCt-1].getAttribute('data-msg-id');
   assessment.api(
     'message',
     'read',
     {
-      // [ Your argument(s) here ]
+      message_id: lastID,
+      chat_room_id: localStorage.chat_room
     },
     function(response) {
 
-      /** TODO 3
+      /**
        * -------------------------------------------------------------------------
        *
        * The function you just wrote in PHP is already being called for you
@@ -50,8 +60,17 @@ component.content.prototype.get_new_messages = function() {
        *
        * -------------------------------------------------------------------------
        */
-
-      // [ Your code here ]
+      
+      if(response.length > 0) {
+        for(var i = 0; i < response.length; i++) {
+          let ele = document.createElement('p');
+          ele.innerHTML = response[i].name+": "+response[i].message;
+          ele.setAttribute('data-msg-id', response[i].message_id);
+          ele.setAttribute('data-chat-id', response[i].chat_room_id);
+          content.appendChild(ele);
+        };
+        content.scrollTop = content.scrollHeight;
+      }
     }
   );
 };

@@ -38,6 +38,9 @@ assessment.ready = function() {
 
   var header = new component.header();
   header.render(document.body);
+  
+  var sidebar = new component.sidebar();
+  sidebar.render(document.body);
 
   var content = new component.content();
   content.render(document.body);

@@ -7,6 +7,6 @@
  * there is no password (leave it blank).
  */
 $database_host = 'localhost';
-$database_username = '';
+$database_username = 'sanderkd';
 $database_password = '';
 $database_name = 'moxee';
